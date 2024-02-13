@@ -1,0 +1,39 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+<img src="Timeline.PNG" usemap="#image-map">
+
+<map name="image-map">
+    <area class="c1" alt="" title="" href="javascript:void(0);" coords="65,261,54" shape="circle">
+    <area class="c2" alt="" title="" href="javascript:void(0);" coords="201,250,71" shape="circle">
+    <area class="c3" alt="" title="" href="javascript:void(0);" coords="348,258,64" shape="circle">
+    <area class="c4" alt="" title="" href="javascript:void(0);" coords="490,253,77" shape="circle">
+    <area class="c5" alt="" title="" href="javascript:void(0);" coords="637,252,71" shape="circle">
+    <area class="c6" alt="" title="" href="javascript:void(0);" coords="836,242,78" shape="circle">
+    <area class="c7" alt="" title="" href="javascript:void(0);" coords="984,251,69" shape="circle">
+    <area class="c8" alt="" title="" href="javascript:void(0);" coords="1132,249,77" shape="circle">
+    <area class="c9" alt="" title="" href="javascript:void(0);" coords="1268,249,63" shape="circle">
+</map>
+
+<!-- Content sections for each circle, initially hidden -->
+<div id="mycircleid1" style="display:none;">
+    This is circle 1 content which will be displayed when we click on circle 1 in the image.
+</div>
+<!-- Repeat for each content div, ensuring IDs match the pattern 'mycircleidX' where X is the circle number -->
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $('area').click(function() {
+        // Hide all content divs
+        $('[id^=mycircleid]').hide();
+        
+        // Show the clicked circle's content. The class of the area matches the end of the content div's id.
+        var classList = $(this).attr('class').split(/\s+/);
+        $.each(classList, function(index, item) {
+            if (item.startsWith('c')) {
+                var circleId = '#mycircleid' + item.substring(1); // Convert class 'cX' to id '#mycircleidX'
+                $(circleId).show();
+            }
+        });
+    });
+});
+</script>
